@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>AF · BW · Александр Фролов — 3D Graphic Designer</title>
+  <meta name="description" content="Портфолио 3D-дизайнера Александра Фролова. 12 лет опыта. Фотореалистичная продуктовая и архитектурная визуализация, character design, motion-графика." />
+  <meta name="theme-color" content="#faf8f5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body class="light">
+  <!-- Custom Cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+  <div class="cursor-trail" aria-hidden="true"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">AF</div>
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+      <div class="loader-text">Loading experience...</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="header">
+    <div class="logo magnetic">
+      <a href="#hero">AF</a>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <a href="#about" class="nav-link magnetic" data-ru="Обо мне" data-en="About">Обо мне</a>
+      <a href="#works" class="nav-link magnetic" data-ru="Работы" data-en="Works">Работы</a>
+      <a href="#process" class="nav-link magnetic" data-ru="Процесс" data-en="Process">Процесс</a>
+      <a href="#services" class="nav-link magnetic" data-ru="Услуги" data-en="Services">Услуги</a>
+      <a href="#contact" class="nav-link magnetic" data-ru="Контакты" data-en="Contact">Контакты</a>
+    </nav>
+    <div class="header-controls">
+      <button class="theme-toggle magnetic" aria-label="Toggle theme" type="button">
+        <span class="sun">☀</span>
+        <span class="moon">☾</span>
+      </button>
+      <button class="lang-toggle magnetic" aria-label="Toggle language" type="button">
+        <span class="lang-ru active">RU</span>
+        <span class="lang-en">EN</span>
+      </button>
+      <button class="menu-toggle magnetic" aria-label="Menu" type="button">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" aria-hidden="true">
+    <a href="#about" class="mobile-link" data-ru="Обо мне" data-en="About">Обо мне</a>
+    <a href="#works" class="mobile-link" data-ru="Работы" data-en="Works">Работы</a>
+    <a href="#process" class="mobile-link" data-ru="Процесс" data-en="Process">Процесс</a>
+    <a href="#services" class="mobile-link" data-ru="Услуги" data-en="Services">Услуги</a>
+    <a href="#reviews" class="mobile-link" data-ru="Отзывы" data-en="Reviews">Отзывы</a>
+    <a href="#contact" class="mobile-link" data-ru="Контакты" data-en="Contact">Контакты</a>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <div class="hero-badge magnetic">
+          <span data-ru="3D GRAPHIC DESIGNER · 12 ЛЕТ ОПЫТА" data-en="3D GRAPHIC DESIGNER · 12 YEARS EXP">3D GRAPHIC DESIGNER · 12 ЛЕТ ОПЫТА</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="line" data-ru="Александр" data-en="Alexander">Александр</span>
+          <span class="line" data-ru="Фролов" data-en="Frolov">Фролов</span>
+        </h1>
+        <p class="hero-subtitle" data-ru="Создаю фотореалистичные миры, в которых хочется жить и к которым хочется прикоснуться." data-en="I create photorealistic worlds you want to live in and touch.">
+          Создаю фотореалистичные миры, в которых хочется жить и к которым хочется прикоснуться.
+        </p>
+        <div class="hero-cta">
+          <a href="#works" class="btn btn-primary magnetic" data-ru="Смотреть работы" data-en="View works">Смотреть работы</a>
+          <a href="#contact" class="btn btn-outline magnetic" data-ru="Связаться" data-en="Get in touch">Связаться</a>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <span data-ru="листай" data-en="scroll">листай</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title" data-ru="Обо мне" data-en="About">Обо мне</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="about-lead" data-ru="Я — Александр Дмитриевич Фролов, 3D-графический дизайнер из Узловой, Тульская область. Уже 12 лет я превращаю идеи в объёмные, живые изображения." data-en="I am Alexander Dmitrievich Frolov, a 3D graphic designer from Uzlovaya, Tula Oblast. For 12 years I have been turning ideas into volumetric, living images.">
+              Я — Александр Дмитриевич Фролов, 3D-графический дизайнер из Узловой, Тульская область. Уже 12 лет я превращаю идеи в объёмные, живые изображения.
+            </p>
+            <p data-ru="Моя специализация — фотореалистичная продуктовая и архитектурная визуализация, character design и motion-графика. Работаю с клиентами по всему миру, сочетая техническую точность с художественным вкусом. Каждый проект начинается с глубокого понимания задачи и заканчивается изображением, которое продаёт, вдохновляет и остаётся в памяти." data-en="My focus is photorealistic product and architectural visualization, character design and motion graphics. I work with clients worldwide, combining technical precision with artistic taste. Every project starts with a deep understanding of the brief and ends with an image that sells, inspires and stays in memory.">
+              Моя специализация — фотореалистичная продуктовая и архитектурная визуализация, character design и motion-графика. Работаю с клиентами по всему миру, сочетая техническую точность с художественным вкусом. Каждый проект начинается с глубокого понимания задачи и заканчивается изображением, которое продаёт, вдохновляет и остаётся в памяти.
+            </p>
+            <div class="about-stats">
+              <div class="stat">
+                <span class="stat-num" data-count="12">0</span>
+                <span class="stat-label" data-ru="лет опыта" data-en="years exp.">лет опыта</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num" data-count="180">0</span>
+                <span class="stat-label" data-ru="проектов" data-en="projects">проектов</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num" data-count="40">0</span>
+                <span class="stat-label" data-ru="клиентов" data-en="clients">клиентов</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-skills">
+            <h3 data-ru="Инструменты" data-en="Tools">Инструменты</h3>
+            <div class="skills-cloud">
+              <span class="skill magnetic">Blender</span>
+              <span class="skill magnetic">Cinema 4D</span>
+              <span class="skill magnetic">Octane</span>
+              <span class="skill magnetic">Redshift</span>
+              <span class="skill magnetic">ZBrush</span>
+              <span class="skill magnetic">Substance</span>
+              <span class="skill magnetic">After Effects</span>
+              <span class="skill magnetic">Photoshop</span>
+              <span class="skill magnetic">Unreal Engine</span>
+              <span class="skill magnetic">Marvelous Designer</span>
+            </div>
+            <div class="about-extra">
+              <h4 data-ru="Дополнительно" data-en="Also">Дополнительно</h4>
+              <ul>
+                <li data-ru="Полный цикл: от концепта до финального рендера и композитинга" data-en="Full pipeline: from concept to final render and compositing">Полный цикл: от концепта до финального рендера и композитинга</li>
+                <li data-ru="Работа с брендами, студиями и частными заказчиками" data-en="Work with brands, studios and private clients">Работа с брендами, студиями и частными заказчиками</li>
+                <li data-ru="Сроки от 3 дней до 6 недель в зависимости от сложности" data-en="Timelines from 3 days to 6 weeks depending on complexity">Сроки от 3 дней до 6 недель в зависимости от сложности</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKS -->
+    <section id="works" class="works section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title" data-ru="Избранные работы" data-en="Selected Works">Избранные работы</h2>
+          <p class="section-desc" data-ru="Каждый проект — это история, рассказанная светом, формой и материалом." data-en="Every project is a story told through light, form and material.">
+            Каждый проект — это история, рассказанная светом, формой и материалом.
+          </p>
+        </div>
+
+        <div class="works-filter" role="tablist">
+          <button class="filter-btn active magnetic" data-filter="all" data-ru="Все" data-en="All" type="button">Все</button>
+          <button class="filter-btn magnetic" data-filter="product" data-ru="Продукт" data-en="Product" type="button">Продукт</button>
+          <button class="filter-btn magnetic" data-filter="arch" data-ru="Архитектура" data-en="Architecture" type="button">Архитектура</button>
+          <button class="filter-btn magnetic" data-filter="character" data-ru="Персонажи" data-en="Characters" type="button">Персонажи</button>
+          <button class="filter-btn magnetic" data-filter="motion" data-ru="Motion" data-en="Motion" type="button">Motion</button>
+        </div>
+
+        <div class="works-grid">
+          <!-- 1 Haniex -->
+          <article class="work-card tilt-card" data-category="product" data-project="haniex">
+            <a href="project.html?id=haniex" class="work-link">
+              <div class="work-image" data-label="Haniex">
+                <img src="images/haniex.jpg" alt="Haniex Headphones 3D" decoding="async" referrerpolicy="no-referrer" onerror="this.dataset.failed=1" loading="lazy" width="1000" height="625" />
+                <div class="work-overlay">
+                  <span class="work-year">2024</span>
+                  <h3 class="work-title">Haniex</h3>
+                  <p class="work-tags">Product · Tech</p>
+                  <span class="work-open" data-ru="Смотреть проект →" data-en="View project →">Смотреть проект →</span>
+                </div>
+              </div>
+              <div class="work-info">
+                <h3>Haniex</h3>
+                <p data-ru="Фотореалистичная визуализация премиальных наушников. Полный цикл: моделирование, UV, текстурирование, освещение Octane, композитинг. 12 финальных кадров + turntable." data-en="Photorealistic visualization of premium headphones. Full pipeline: modeling, UV, texturing, Octane lighting, compositing. 12 final frames + turntable.">
+                  Фотореалистичная визуализация премиальных наушников. Полный цикл: моделирование, UV, текстурирование, освещение Octane, композитинг. 12 финальных кадров + turntable.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 2 Aurora -->
+          <article class="work-card tilt-card" data-category="arch" data-project="aurora">
+            <a href="project.html?id=aurora" class="work-link">
+              <div class="work-image" data-label="Aurora">
+                <img src="images/aurora.jpg" alt="Aurora Residence 3D" decoding="async" referrerpolicy="no-referrer" onerror="this.dataset.failed=1" loading="lazy" width="1000" height="625" />
+                <div class="work-overlay">
+                  <span class="work-year">2025</span>
+                  <h3 class="work-title">Aurora Residence</h3>
+                  <p class="work-tags">Architecture · Exterior</p>
+                  <span class="work-open" data-ru="Смотреть проект →" data-en="View project →">Смотреть проект →</span>
+                </div>
+              </div>
+              <div class="work-info">
+                <h3>Aurora Residence</h3>
+                <p data-ru="Архитектурная визуализация современной виллы на побережье. Акцент на естественном свете, материалах камня и стекла. 8 ракурсов + сумерки." data-en="Architectural visualization of a modern coastal villa. Focus on natural light, stone and glass materials. 8 angles + dusk sequence.">
+                  Архитектурная визуализация современной виллы на побережье. Акцент на естественном свете, материалах камня и стекла. 8 ракурсов + сумерки.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 3 Lumina -->
+          <article class="work-card tilt-card" data-category="product" data-project="lumina">
+            <a href="project.html?id=lumina" class="work-link">
+              <div class="work-image" data-label="Lumina">
+                <img src="images/lumina.jpg" alt="Lumina Bottle 3D" decoding="async" referrerpolicy="no-referrer" onerror="this.dataset.failed=1" loading="lazy" width="1000" height="625" />
+                <div class="work-overlay">
+                  <span class="work-year">2024</span>
+                  <h3 class="work-title">Lumina Bottle</h3>
+                  <p class="work-tags">Packaging · Luxury</p>
+                  <span class="work-open" data-ru="Смотреть проект →" data-en="View project →">Смотреть проект →</span>
+                </div>
+              </div>
+              <div class="work-info">
+                <h3>Lumina Bottle</h3>
+                <p data-ru="3D-визуализация флакона люксовых духов. Сложные материалы стекла, жидкости, этикетки и отражений. Серия для рекламной кампании." data-en="3D visualization of a luxury perfume bottle. Complex glass, liquid, label and reflection materials. Series for an advertising campaign.">
+                  3D-визуализация флакона люксовых духов. Сложные материалы стекла, жидкости, этикетки и отражений. Серия для рекламной кампании.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 4 Vertex -->
+          <article class="work-card tilt-card" data-category="character" data-project="vertex">
+            <a href="project.html?id=vertex" class="work-link">
+              <div class="work-image" data-label="Vertex">
+                <img src="images/vertex.jpg" alt="Vertex Character 3D" decoding="async" referrerpolicy="no-referrer" onerror="this.dataset.failed=1" loading="lazy" width="1000" height="625" />
+                <div class="work-overlay">
+                  <span class="work-year">2023</span>
+                  <h3 class="work-title">Vertex</h3>
+                  <p class="work-tags">Character · Game</p>
+                  <span class="work-open" data-ru="Смотреть проект →" data-en="View project →">Смотреть проект →</span>
+                </div>
+              </div>
+              <div class="work-info">
+                <h3>Vertex Character</h3>
+                <p data-ru="Создание игрового персонажа: ZBrush-скульптинг, ретопология, UV, текстурирование Substance, риггинг и базовые анимации. Готов к интеграции в Unreal." data-en="Game character creation: ZBrush sculpting, retopology, UV, Substance texturing, rigging and basic animations. Ready for Unreal integration.">
+                  Создание игрового персонажа: ZBrush-скульптинг, ретопология, UV, текстурирование Substance, риггинг и базовые анимации. Готов к интеграции в Unreal.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 5 Echo Sphere -->
+          <article class="work-card tilt-card" data-category="motion" data-project="echo">
+            <a href="project.html?id=echo" class="work-link">
+              <div class="work-image" data-label="Echo">
+                <img src="images/echo.jpg" alt="Echo Sphere Motion 3D" decoding="async" referrerpolicy="no-referrer" onerror="this.dataset.failed=1" loading="lazy" width="1000" height="625" />
+                <div class="work-overlay">
+                  <span class="work-year">2025</span>
+                  <h3 class="work-title">Echo Sphere</h3>
+                  <p class="work-tags">Motion · Brand</p>
+                  <span class="work-open" data-ru="Смотреть проект →" data-en="View project →">Смотреть проект →</span>
+                </div>
+              </div>
+              <div class="work-info">
+                <h3>Echo Sphere</h3>
+                <p data-ru="Motion-идентификация и 3D-анимация для технологического бренда. Абстрактные формы, звуковые волны, логотип в движении. 15-секундный ролик + loop." data-en="Motion identity and 3D animation for a tech brand. Abstract forms, sound waves, logo in motion. 15-second film + loop.">
+                  Motion-идентификация и 3D-анимация для технологического бренда. Абстрактные формы, звуковые волны, логотип в движении. 15-секундный ролик + loop.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 6 Urban Pulse -->
+          <article class="work-card tilt-card" data-category="arch" data-project="urban">
+            <a href="project.html?id=urban" class="work-link">
+              <div class="work-image" data-label="Urban Pulse">
+                <img src="images/urban.jpg" alt="Urban Pulse 3D" decoding="async" referrerpolicy="no-referrer" onerror="this.dataset.failed=1" loading="lazy" width="1000" height="625" />
+                <div class="work-overlay">
+                  <span class="work-year">2024</span>
+                  <h3 class="work-title">Urban Pulse</h3>
+                  <p class="work-tags">Environment · City</p>
+                  <span class="work-open" data-ru="Смотреть проект →" data-en="View project →">Смотреть проект →</span>
+                </div>
+              </div>
+              <div class="work-info">
+                <h3>Urban Pulse</h3>
+                <p data-ru="Концептуальный городской пейзаж будущего. Сочетание архитектуры, атмосферы и неонового освещения. Мат-пейнт + 3D-элементы." data-en="Conceptual future cityscape. Mix of architecture, atmosphere and neon lighting. Matte-paint + 3D elements.">
+                  Концептуальный городской пейзаж будущего. Сочетание архитектуры, атмосферы и неонового освещения. Мат-пейнт + 3D-элементы.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 7 Neon Drift -->
+          <article class="work-card tilt-card" data-category="product" data-project="neon">
+            <a href="project.html?id=neon" class="work-link">
+              <div class="work-image" data-label="Neon Drift">
+                <img src="images/neon.jpg" alt="Neon Drift Concept Car 3D" decoding="async" referrerpolicy="no-referrer" onerror="this.dataset.failed=1" loading="lazy" width="1000" height="625" />
+                <div class="work-overlay">
+                  <span class="work-year">2023</span>
+                  <h3 class="work-title">Neon Drift</h3>
+                  <p class="work-tags">Automotive · Concept</p>
+                  <span class="work-open" data-ru="Смотреть проект →" data-en="View project →">Смотреть проект →</span>
+                </div>
+              </div>
+              <div class="work-info">
+                <h3>Neon Drift</h3>
+                <p data-ru="Концепт-кар в неоновом стиле. Драматичное освещение, высокодетализированные материалы кузова и интерьера. Серия из 6 кадров." data-en="Neon-style concept car. Dramatic lighting, highly detailed body and interior materials. Series of 6 frames.">
+                  Концепт-кар в неоновом стиле. Драматичное освещение, высокодетализированные материалы кузова и интерьера. Серия из 6 кадров.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <!-- 8 Aether -->
+          <article class="work-card tilt-card" data-category="character" data-project="aether">
+            <a href="project.html?id=aether" class="work-link">
+              <div class="work-image" data-label="Aether">
+                <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=1000&q=80" alt="Aether Guardian 3D" decoding="async" referrerpolicy="no-referrer" onerror="this.dataset.failed=1" loading="lazy" width="1000" height="625" />
+                <div class="work-overlay">
+                  <span class="work-year">2025</span>
+                  <h3 class="work-title">Aether Guardian</h3>
+                  <p class="work-tags">Character · Fantasy</p>
+                  <span class="work-open" data-ru="Смотреть проект →" data-en="View project →">Смотреть проект →</span>
+                </div>
+              </div>
+              <div class="work-info">
+                <h3>Aether Guardian</h3>
+                <p data-ru="Фэнтезийный персонаж-страж: high-poly скульпт, стилизованные текстуры, cloth simulation в Marvelous Designer, готовый к анимации." data-en="Fantasy guardian character: high-poly sculpt, stylized textures, cloth simulation in Marvelous Designer, animation-ready.">
+                  Фэнтезийный персонаж-страж: high-poly скульпт, стилизованные текстуры, cloth simulation в Marvelous Designer, готовый к анимации.
+                </p>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="process section" data-process-root>
+      <div class="process-ambient" aria-hidden="true"></div>
+      <div class="container process-container">
+
+        <!-- CINEMATIC INTRO -->
+        <header class="process-hero">
+          <p class="process-kicker" data-ru="ПРОЦЕСС" data-en="PROCESS">ПРОЦЕСС</p>
+          <h2 class="process-headline" data-ru="От идеи. До вау." data-en="From idea. To wow.">От идеи. До вау.</h2>
+          <p class="process-sub" data-ru="Продуманный процесс, прозрачные решения и внимание к каждой детали — от первой идеи до финального результата." data-en="A thoughtful process, transparent decisions, and attention to every detail — from the first idea to the final result.">
+            Продуманный процесс, прозрачные решения и внимание к каждой детали — от первой идеи до финального результата.
+          </p>
+          <div class="process-orbit" id="process-orbit" aria-hidden="true">
+            <div class="po-ring po-ring-1"></div>
+            <div class="po-ring po-ring-2"></div>
+            <div class="po-core">
+              <span class="po-dot"></span>
+              <span class="po-dot"></span>
+              <span class="po-dot"></span>
+              <span class="po-dot"></span>
+            </div>
+            <div class="po-float po-f1"></div>
+            <div class="po-float po-f2"></div>
+            <div class="po-float po-f3"></div>
+          </div>
+        </header>
+
+        <!-- TIMELINE -->
+        <div class="process-nav-bar">
+          <button type="button" class="pt-nav-btn" id="pt-prev" aria-label="Предыдущий этап" data-ru-aria="Предыдущий этап" data-en-aria="Previous step" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="pt-dots" role="tablist" aria-label="Этапы">
+            <button type="button" class="pt-dot is-active" data-index="0" aria-current="true" aria-label="1"></button>
+            <button type="button" class="pt-dot" data-index="1" aria-label="2"></button>
+            <button type="button" class="pt-dot" data-index="2" aria-label="3"></button>
+            <button type="button" class="pt-dot" data-index="3" aria-label="4"></button>
+            <button type="button" class="pt-dot" data-index="4" aria-label="5"></button>
+          </div>
+          <button type="button" class="pt-nav-btn" id="pt-next" aria-label="Следующий этап" data-ru-aria="Следующий этап" data-en-aria="Next step">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <div class="process-timeline" id="process-timeline">
+          <div class="pt-track" aria-hidden="true">
+            <div class="pt-progress" id="pt-progress"></div>
+          </div>
+
+          <article class="pt-step is-active" data-step="0">
+            <button type="button" class="pt-marker" aria-expanded="true" aria-controls="pt-panel-0">
+              <span class="pt-num">01</span>
+            </button>
+            <div class="pt-panel" id="pt-panel-0">
+              <div class="pt-visual" aria-hidden="true">
+                <div class="pv-scene pv-idea">
+                  <span class="pv-chip"></span>
+                  <span class="pv-chip"></span>
+                  <span class="pv-chip"></span>
+                  <span class="pv-line"></span>
+                </div>
+              </div>
+              <div class="pt-content">
+                <h3 class="pt-title" data-ru="Бриф и референсы" data-en="Brief & references">Бриф и референсы</h3>
+                <p class="pt-desc" data-ru="Выясняем задачу, цели, аудиторию, визуальное направление, сроки и бюджет. Собираем референсы и фиксируем ожидания." data-en="We clarify the task, goals, audience, visual direction, timeline and budget. Collect references and align expectations.">
+                  Выясняем задачу, цели, аудиторию, визуальное направление, сроки и бюджет. Собираем референсы и фиксируем ожидания.
+                </p>
+                <p class="pt-result"><span data-ru="Результат:" data-en="Outcome:">Результат:</span> <span data-ru="чёткий бриф и согласованное направление" data-en="a clear brief and agreed direction">чёткий бриф и согласованное направление</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="pt-step" data-step="1">
+            <button type="button" class="pt-marker" aria-expanded="false" aria-controls="pt-panel-1">
+              <span class="pt-num">02</span>
+            </button>
+            <div class="pt-panel" id="pt-panel-1">
+              <div class="pt-visual" aria-hidden="true">
+                <div class="pv-scene pv-structure">
+                  <span class="pv-block"></span>
+                  <span class="pv-block"></span>
+                  <span class="pv-block"></span>
+                  <span class="pv-block"></span>
+                </div>
+              </div>
+              <div class="pt-content">
+                <h3 class="pt-title" data-ru="Концепция и структура" data-en="Concept & structure">Концепция и структура</h3>
+                <p class="pt-desc" data-ru="Формируем композицию, блокинг сцены и основные ракурсы. Согласовываем moodboard и общее настроение кадра." data-en="We shape composition, scene blocking and key angles. Align the moodboard and overall frame mood.">
+                  Формируем композицию, блокинг сцены и основные ракурсы. Согласовываем moodboard и общее настроение кадра.
+                </p>
+                <p class="pt-result"><span data-ru="Результат:" data-en="Outcome:">Результат:</span> <span data-ru="утверждённый концепт и структура проекта" data-en="approved concept and project structure">утверждённый концепт и структура проекта</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="pt-step" data-step="2">
+            <button type="button" class="pt-marker" aria-expanded="false" aria-controls="pt-panel-2">
+              <span class="pt-num">03</span>
+            </button>
+            <div class="pt-panel" id="pt-panel-2">
+              <div class="pt-visual" aria-hidden="true">
+                <div class="pv-scene pv-design">
+                  <span class="pv-panel"></span>
+                  <span class="pv-panel"></span>
+                  <span class="pv-accent"></span>
+                </div>
+              </div>
+              <div class="pt-content">
+                <h3 class="pt-title" data-ru="Моделирование и дизайн" data-en="Modeling & design">Моделирование и дизайн</h3>
+                <p class="pt-desc" data-ru="Строим геометрию, UV, базовые материалы. Настраиваем свет и камеры. Промежуточные превью для правок." data-en="We build geometry, UVs, base materials. Set up lighting and cameras. Interim previews for feedback.">
+                  Строим геометрию, UV, базовые материалы. Настраиваем свет и камеры. Промежуточные превью для правок.
+                </p>
+                <p class="pt-result"><span data-ru="Результат:" data-en="Outcome:">Результат:</span> <span data-ru="рабочая сцена и согласованный look" data-en="working scene and approved look">рабочая сцена и согласованный look</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="pt-step" data-step="3">
+            <button type="button" class="pt-marker" aria-expanded="false" aria-controls="pt-panel-3">
+              <span class="pt-num">04</span>
+            </button>
+            <div class="pt-panel" id="pt-panel-3">
+              <div class="pt-visual" aria-hidden="true">
+                <div class="pv-scene pv-detail">
+                  <span class="pv-fine"></span>
+                  <span class="pv-fine"></span>
+                  <span class="pv-fine"></span>
+                  <span class="pv-glow"></span>
+                </div>
+              </div>
+              <div class="pt-content">
+                <h3 class="pt-title" data-ru="Детализация и тест" data-en="Detailing & review">Детализация и тест</h3>
+                <p class="pt-desc" data-ru="Текстуры, материалы, мелкие детали. Финальные тестовые рендеры, правки освещения и композитинга." data-en="Textures, materials, fine details. Final test renders, lighting and compositing refinements.">
+                  Текстуры, материалы, мелкие детали. Финальные тестовые рендеры, правки освещения и композитинга.
+                </p>
+                <p class="pt-result"><span data-ru="Результат:" data-en="Outcome:">Результат:</span> <span data-ru="готовая к финалу сцена без сюрпризов" data-en="scene ready for final with no surprises">готовая к финалу сцена без сюрпризов</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="pt-step" data-step="4">
+            <button type="button" class="pt-marker" aria-expanded="false" aria-controls="pt-panel-4">
+              <span class="pt-num">05</span>
+            </button>
+            <div class="pt-panel" id="pt-panel-4">
+              <div class="pt-visual" aria-hidden="true">
+                <div class="pv-scene pv-result">
+                  <span class="pv-frame"></span>
+                  <span class="pv-check"></span>
+                </div>
+              </div>
+              <div class="pt-content">
+                <h3 class="pt-title" data-ru="Финальная передача" data-en="Final delivery">Финальная передача</h3>
+                <p class="pt-desc" data-ru="Рендер в нужном разрешении, цветокоррекция, экспорт форматов. Передача файлов и сопровождение при необходимости." data-en="Render at required resolution, color grade, format export. File handoff and support if needed.">
+                  Рендер в нужном разрешении, цветокоррекция, экспорт форматов. Передача файлов и сопровождение при необходимости.
+                </p>
+                <p class="pt-result"><span data-ru="Результат:" data-en="Outcome:">Результат:</span> <span data-ru="готовые файлы и закрытый этап" data-en="final files and a closed stage">готовые файлы и закрытый этап</span></p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- CLOSING CTA -->
+        <div class="process-close">
+          <h3 class="process-close-title" data-ru="Теперь ваша очередь." data-en="Now it's your turn.">Теперь ваша очередь.</h3>
+          <p class="process-close-text" data-ru="Есть идея или задача? Давайте обсудим, каким может быть результат." data-en="Have an idea or a task? Let's discuss what the result could look like.">
+            Есть идея или задача? Давайте обсудим, каким может быть результат.
+          </p>
+          <div class="process-close-actions">
+            <a href="#contact" class="btn btn-primary magnetic" data-ru="Обсудить проект" data-en="Discuss a project">Обсудить проект</a>
+            <a href="#works" class="btn btn-outline magnetic" data-ru="Посмотреть работы" data-en="View works">Посмотреть работы</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title" data-ru="Услуги" data-en="Services">Услуги</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <span class="service-num">01</span>
+            <h3 data-ru="Продуктовая визуализация" data-en="Product visualization">Продуктовая визуализация</h3>
+            <p data-ru="Фотореалистичные рендеры товаров для e-commerce, рекламы и презентаций. От простых объектов до сложных сборок." data-en="Photorealistic product renders for e-commerce, advertising and presentations. From simple objects to complex assemblies.">
+              Фотореалистичные рендеры товаров для e-commerce, рекламы и презентаций. От простых объектов до сложных сборок.
+            </p>
+            <ul class="service-list">
+              <li data-ru="Каталожные и lifestyle-сцены" data-en="Catalog & lifestyle scenes">Каталожные и lifestyle-сцены</li>
+              <li data-ru="360° и turntable" data-en="360° and turntable">360° и turntable</li>
+              <li data-ru="Анимация продукта" data-en="Product animation">Анимация продукта</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline magnetic service-cta" data-ru="Обсудить проект" data-en="Discuss project">Обсудить проект</a>
+          </div>
+          <div class="service-card">
+            <span class="service-num">02</span>
+            <h3 data-ru="Архитектурная визуализация" data-en="Architectural visualization">Архитектурная визуализация</h3>
+            <p data-ru="Экстерьеры и интерьеры любой сложности. От эскиза до финального рендера и анимации." data-en="Exteriors and interiors of any complexity. From sketch to final render and animation.">
+              Экстерьеры и интерьеры любой сложности. От эскиза до финального рендера и анимации.
+            </p>
+            <ul class="service-list">
+              <li data-ru="Экстерьер / интерьер" data-en="Exterior / interior">Экстерьер / интерьер</li>
+              <li data-ru="Дневные и ночные сцены" data-en="Day & night scenes">Дневные и ночные сцены</li>
+              <li data-ru="Архитектурные ролики" data-en="Architectural films">Архитектурные ролики</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline magnetic service-cta" data-ru="Обсудить проект" data-en="Discuss project">Обсудить проект</a>
+          </div>
+          <div class="service-card">
+            <span class="service-num">03</span>
+            <h3 data-ru="Character Design" data-en="Character Design">Character Design</h3>
+            <p data-ru="Создание персонажей для игр, анимации и рекламы. От концепта до ригга и готовой модели." data-en="Characters for games, animation and advertising. From concept to rig and production-ready model.">
+              Создание персонажей для игр, анимации и рекламы. От концепта до ригга и готовой модели.
+            </p>
+            <ul class="service-list">
+              <li data-ru="Sculpt + retopo" data-en="Sculpt + retopo">Sculpt + retopo</li>
+              <li data-ru="Текстуры и материалы" data-en="Textures & materials">Текстуры и материалы</li>
+              <li data-ru="Риггинг и skinning" data-en="Rigging & skinning">Риггинг и skinning</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline magnetic service-cta" data-ru="Обсудить проект" data-en="Discuss project">Обсудить проект</a>
+          </div>
+          <div class="service-card">
+            <span class="service-num">04</span>
+            <h3 data-ru="Motion & Animation" data-en="Motion & Animation">Motion & Animation</h3>
+            <p data-ru="3D-анимация, motion-графика и брендинговые ролики. От 5-секундных loops до полноценных фильмов." data-en="3D animation, motion graphics and brand films. From 5-second loops to full films.">
+              3D-анимация, motion-графика и брендинговые ролики. От 5-секундных loops до полноценных фильмов.
+            </p>
+            <ul class="service-list">
+              <li data-ru="Logo animation" data-en="Logo animation">Logo animation</li>
+              <li data-ru="Product animation" data-en="Product animation">Product animation</li>
+              <li data-ru="Full CG films" data-en="Full CG films">Full CG films</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline magnetic service-cta" data-ru="Обсудить проект" data-en="Discuss project">Обсудить проект</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS — AF / CLIENT EXPERIENCE -->
+    <section id="reviews" class="reviews section" data-reviews-root>
+      <div class="reviews-ambient" aria-hidden="true"></div>
+      <div class="container reviews-container">
+
+        <header class="reviews-intro">
+          <p class="reviews-kicker" data-ru="AF / CLIENT EXPERIENCE" data-en="AF / CLIENT EXPERIENCE">AF / CLIENT EXPERIENCE</p>
+          <h2 class="reviews-title section-title" data-ru="Доверие, воплощённое в деталях" data-en="Trust, embodied in detail">Доверие, воплощённое в деталях</h2>
+          <p class="reviews-lead" data-ru="Каждый проект — результат совместной работы, внимания к деталям и стремления к качеству." data-en="Every project is the result of collaboration, attention to detail, and a commitment to quality.">
+            Каждый проект — результат совместной работы, внимания к деталям и стремления к качеству.
+          </p>
+        </header>
+
+        <div class="reviews-gallery" id="reviews-gallery" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Отзывы клиентов" data-ru-aria="Отзывы клиентов" data-en-aria="Client testimonials">
+          <div class="reviews-stage" id="reviews-stage">
+            <!-- cards injected / positioned by JS from data attributes -->
+            <article class="rx-card is-active" data-index="0" data-author="Мария К." data-role-ru="Product Manager · TechBrand" data-role-en="Product Manager · TechBrand" tabindex="-1">
+              <div class="rx-card-inner">
+                <div class="rx-meta">
+                  <span class="rx-index">01 / 03</span>
+                  <span class="rx-stars" aria-hidden="true">★★★★★</span>
+                </div>
+                <blockquote class="rx-quote">
+                  <p data-ru="«Александр сделал визуализацию, которая превзошла все ожидания. Клиенты сразу захотели купить продукт. Работали быстро и без лишних правок.»" data-en="«Alexander delivered a visualization that exceeded all expectations. Clients immediately wanted to buy the product. Fast work, almost no revisions.»">«Александр сделал визуализацию, которая превзошла все ожидания. Клиенты сразу захотели купить продукт. Работали быстро и без лишних правок.»</p>
+                </blockquote>
+                <footer class="rx-author">
+                  <div class="rx-avatar" aria-hidden="true">МК</div>
+                  <div>
+                    <strong class="rx-name">Мария К.</strong>
+                    <span class="rx-role" data-ru="Product Manager · TechBrand" data-en="Product Manager · TechBrand">Product Manager · TechBrand</span>
+                  </div>
+                </footer>
+                <button type="button" class="rx-more" data-ru="Подробнее" data-en="Read more">Подробнее</button>
+              </div>
+            </article>
+
+            <article class="rx-card" data-index="1" data-author="Elena V." data-role-ru="Art Director · Global Agency" data-role-en="Art Director · Global Agency" tabindex="-1">
+              <div class="rx-card-inner">
+                <div class="rx-meta">
+                  <span class="rx-index">02 / 03</span>
+                  <span class="rx-stars" aria-hidden="true">★★★★★</span>
+                </div>
+                <blockquote class="rx-quote">
+                  <p data-ru="«Лучший 3D-специалист, с которым я работал. Качество на уровне международных студий, при этом коммуникация простая и человечная. Рекомендую без оговорок.»" data-en="«The best 3D specialist I have worked with. Quality at international studio level, yet communication is simple and human. Recommend without reservations.»">«Лучший 3D-специалист, с которым я работал. Качество на уровне международных студий, при этом коммуникация простая и человечная. Рекомендую без оговорок.»</p>
+                </blockquote>
+                <footer class="rx-author">
+                  <div class="rx-avatar" aria-hidden="true">EV</div>
+                  <div>
+                    <strong class="rx-name">Elena V.</strong>
+                    <span class="rx-role" data-ru="Art Director · Global Agency" data-en="Art Director · Global Agency">Art Director · Global Agency</span>
+                  </div>
+                </footer>
+                <button type="button" class="rx-more" data-ru="Подробнее" data-en="Read more">Подробнее</button>
+              </div>
+            </article>
+
+            <article class="rx-card" data-index="2" data-author="Дмитрий С." data-role-ru="Creative Director · Studio Nova" data-role-en="Creative Director · Studio Nova" tabindex="-1">
+              <div class="rx-card-inner">
+                <div class="rx-meta">
+                  <span class="rx-index">03 / 03</span>
+                  <span class="rx-stars" aria-hidden="true">★★★★★</span>
+                </div>
+                <blockquote class="rx-quote">
+                  <p data-ru="«Работает быстро, точно понимает задачу и всегда предлагает сильные визуальные решения. Надёжный партнёр на долгий срок.»" data-en="«Works fast, understands the brief precisely and always offers strong visual solutions. A reliable long-term partner.»">«Работает быстро, точно понимает задачу и всегда предлагает сильные визуальные решения. Надёжный партнёр на долгий срок.»</p>
+                </blockquote>
+                <footer class="rx-author">
+                  <div class="rx-avatar" aria-hidden="true">ДС</div>
+                  <div>
+                    <strong class="rx-name">Дмитрий С.</strong>
+                    <span class="rx-role" data-ru="Creative Director · Studio Nova" data-en="Creative Director · Studio Nova">Creative Director · Studio Nova</span>
+                  </div>
+                </footer>
+                <button type="button" class="rx-more" data-ru="Подробнее" data-en="Read more">Подробнее</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="reviews-controls">
+            <button type="button" class="rx-nav rx-prev" id="rx-prev" aria-label="Предыдущий отзыв" data-ru-aria="Предыдущий отзыв" data-en-aria="Previous testimonial">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="rx-dots" id="rx-dots" role="tablist" aria-label="Выбор отзыва">
+              <button type="button" class="rx-dot is-active" role="tab" aria-selected="true" data-index="0" aria-label="1"></button>
+              <button type="button" class="rx-dot" role="tab" aria-selected="false" data-index="1" aria-label="2"></button>
+              <button type="button" class="rx-dot" role="tab" aria-selected="false" data-index="2" aria-label="3"></button>
+            </div>
+            <button type="button" class="rx-nav rx-next" id="rx-next" aria-label="Следующий отзыв" data-ru-aria="Следующий отзыв" data-en-aria="Next testimonial">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="rx-sound" id="rx-sound" aria-pressed="false" aria-label="Включить звук" data-ru-aria-off="Включить звук" data-ru-aria-on="Выключить звук" data-en-aria-off="Enable sound" data-en-aria-on="Disable sound" title="Sound">
+              <svg class="rx-sound-off" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="rx-sound-on" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="reviews-cta-row">
+          <a href="#contact" class="btn btn-primary magnetic" data-ru="Обсудить проект" data-en="Discuss a project">Обсудить проект</a>
+        </div>
+      </div>
+
+      <!-- Expanded detail dialog -->
+      <div class="rx-dialog" id="rx-dialog" role="dialog" aria-modal="true" aria-labelledby="rx-dialog-title" hidden>
+        <div class="rx-dialog-backdrop" data-close></div>
+        <div class="rx-dialog-panel">
+          <button type="button" class="rx-dialog-close" data-close aria-label="Закрыть" data-ru-aria="Закрыть" data-en-aria="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <p class="rx-dialog-index" id="rx-dialog-index">01 / 03</p>
+          <h3 class="rx-dialog-title" id="rx-dialog-title"></h3>
+          <p class="rx-dialog-role" id="rx-dialog-role"></p>
+          <blockquote class="rx-dialog-quote" id="rx-dialog-quote"></blockquote>
+          <a href="#contact" class="btn btn-outline" data-close data-ru="Обсудить проект" data-en="Discuss a project">Обсудить проект</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2 class="section-title" data-ru="Давайте создадим что-то крутое" data-en="Let's create something cool">Давайте создадим что-то крутое</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-label" data-ru="Email" data-en="Email">Email</span>
+              <a href="mailto:enemy1032@gmail.com" class="magnetic">enemy1032@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label" data-ru="Telegram" data-en="Telegram">Telegram</span>
+              <a href="https://t.me/uguro" target="_blank" rel="noopener" class="magnetic">@uguro</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label" data-ru="Телефон" data-en="Phone">Телефон</span>
+              <a href="tel:+79029026769" class="magnetic">+7 902 902-67-69</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label" data-ru="Локация" data-en="Location">Локация</span>
+              <span data-ru="Узловая, Тульская область, Россия" data-en="Uzlovaya, Tula Oblast, Russia">Узловая, Тульская область, Россия</span>
+            </div>
+            <div class="socials">
+              <a href="https://www.behance.net/" target="_blank" rel="noopener" class="social magnetic" aria-label="Behance">Behance</a>
+              <a href="https://www.artstation.com/" target="_blank" rel="noopener" class="social magnetic" aria-label="ArtStation">ArtStation</a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="social magnetic" aria-label="Instagram">Instagram</a>
+            </div>
+          </div>
+          <!-- Formspree: https://formspree.io/f/xaeqrznk -->
+          <form class="contact-form" id="contact-form" action="https://formspree.io/f/xaeqrznk" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="Новое сообщение с портфолио AF" />
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <div class="form-group">
+              <input type="text" id="name" name="name" required placeholder=" " autocomplete="name" />
+              <label for="name" data-ru="Имя" data-en="Name">Имя</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" required placeholder=" " autocomplete="email" />
+              <label for="email" data-ru="Email" data-en="Email">Email</label>
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+              <label for="message" data-ru="Сообщение" data-en="Message">Сообщение</label>
+            </div>
+            <button type="submit" class="btn btn-primary magnetic" data-ru="Отправить" data-en="Send message">Отправить</button>
+            <p class="form-status" id="form-status" aria-live="polite" hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- Floating Back to Top -->
+  <button type="button" class="to-top" id="to-top" aria-label="Наверх" data-ru-aria="Наверх" data-en-aria="Back to top" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="to-top-label" data-ru="Наверх" data-en="Top">Наверх</span>
+  </button>
+
+  <!-- Support Chat Widget -->
+  <div class="chat-widget" id="chat-widget">
+    <button type="button" class="chat-toggle" id="chat-toggle" aria-label="Support chat" aria-expanded="false">
+      <span class="chat-toggle-pulse" aria-hidden="true"></span>
+      <span class="chat-icon-open" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="chat-icon-close" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+    </button>
+
+    <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Support" aria-hidden="true">
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <div class="chat-avatar-wrap">
+            <div class="chat-avatar">AF</div>
+            <span class="chat-online" title="Online"></span>
+          </div>
+          <div class="chat-header-text">
+            <strong data-ru="Поддержка AF" data-en="AF Support">Поддержка AF</strong>
+            <span class="chat-status"><span class="chat-status-dot"></span> <span data-ru="Онлайн · отвечаем быстро" data-en="Online · quick replies">Онлайн · отвечаем быстро</span></span>
+          </div>
+        </div>
+        <button type="button" class="chat-minimize" id="chat-minimize" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="chat-views">
+        <!-- HOME / FAQ VIEW -->
+        <div class="chat-view active" id="chat-view-home" data-view="home">
+          <div class="chat-greeting">
+            <p class="chat-greeting-title" data-ru="Чем помочь?" data-en="How can we help?">Чем помочь?</p>
+            <p class="chat-greeting-sub" data-ru="Выберите вопрос или напишите свой — ответим сами или подключим Александра." data-en="Pick a question or write your own — we answer or connect you to Alexander.">Выберите вопрос или напишите свой — ответим сами или подключим Александра.</p>
+          </div>
+
+          <div class="chat-faq" id="chat-faq">
+            <button type="button" class="chat-faq-item" data-faq="price">
+              <span class="chat-faq-icon">💰</span>
+              <span class="chat-faq-q" data-ru="Сколько стоит визуализация?" data-en="How much does visualization cost?">Сколько стоит визуализация?</span>
+              <span class="chat-faq-arrow">→</span>
+            </button>
+            <button type="button" class="chat-faq-item" data-faq="time">
+              <span class="chat-faq-icon">⏱</span>
+              <span class="chat-faq-q" data-ru="Какие сроки выполнения?" data-en="What are the timelines?">Какие сроки выполнения?</span>
+              <span class="chat-faq-arrow">→</span>
+            </button>
+            <button type="button" class="chat-faq-item" data-faq="brief">
+              <span class="chat-faq-icon">📋</span>
+              <span class="chat-faq-q" data-ru="Что нужно для старта?" data-en="What do you need to start?">Что нужно для старта?</span>
+              <span class="chat-faq-arrow">→</span>
+            </button>
+            <button type="button" class="chat-faq-item" data-faq="revisions">
+              <span class="chat-faq-icon">🔄</span>
+              <span class="chat-faq-q" data-ru="Сколько правок входит?" data-en="How many revisions are included?">Сколько правок входит?</span>
+              <span class="chat-faq-arrow">→</span>
+            </button>
+            <button type="button" class="chat-faq-item" data-faq="formats">
+              <span class="chat-faq-icon">📁</span>
+              <span class="chat-faq-q" data-ru="В каких форматах отдача?" data-en="What delivery formats?">В каких форматах отдача?</span>
+              <span class="chat-faq-arrow">→</span>
+            </button>
+            <button type="button" class="chat-faq-item" data-faq="remote">
+              <span class="chat-faq-icon">🌍</span>
+              <span class="chat-faq-q" data-ru="Работаете удалённо / с другими странами?" data-en="Do you work remotely / internationally?">Работаете удалённо / с другими странами?</span>
+              <span class="chat-faq-arrow">→</span>
+            </button>
+          </div>
+
+          <div class="chat-home-actions">
+            <button type="button" class="chat-action-primary" id="chat-ask-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.75"/></svg>
+              <span data-ru="Задать свой вопрос" data-en="Ask your question">Задать свой вопрос</span>
+            </button>
+            <button type="button" class="chat-action-operator" id="chat-operator-btn">
+              <span class="op-dot"></span>
+              <span data-ru="Подключить оператора" data-en="Connect to operator">Подключить оператора</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- FAQ ANSWER VIEW -->
+        <div class="chat-view" id="chat-view-faq" data-view="faq">
+          <button type="button" class="chat-back" id="chat-faq-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-ru="Назад" data-en="Back">Назад</span>
+          </button>
+          <div class="chat-faq-answer" id="chat-faq-answer">
+            <h3 id="faq-title"></h3>
+            <div id="faq-body"></div>
+            <div class="chat-faq-cta">
+              <button type="button" class="chat-action-operator small" id="chat-faq-operator">
+                <span class="op-dot"></span>
+                <span data-ru="Не нашли ответ? Написать оператору" data-en="Still need help? Talk to operator">Не нашли ответ? Написать оператору</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIVE CHAT / OPERATOR VIEW -->
+        <div class="chat-view" id="chat-view-live" data-view="live">
+          <button type="button" class="chat-back" id="chat-live-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-ru="Назад" data-en="Back">Назад</span>
+          </button>
+          <div class="chat-body" id="chat-body">
+            <div class="chat-msg bot">
+              <div class="chat-msg-meta">AF Support</div>
+              <p data-ru="Напишите вопрос — сообщение уйдёт Александру. Обычно ответ в течение нескольких часов. Можно сразу открыть Telegram." data-en="Write your question — it goes to Alexander. Usually a reply within a few hours. You can also open Telegram.">Напишите вопрос — сообщение уйдёт Александру. Обычно ответ в течение нескольких часов. Можно сразу открыть Telegram.</p>
+            </div>
+          </div>
+          <div class="chat-operator-bar">
+            <a href="https://t.me/uguro" target="_blank" rel="noopener" class="chat-tg-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.39-.94-2.25-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.74 3.99-1.74 6.65-2.89 7.99-3.45 3.8-1.6 4.59-1.88 5.1-1.89.11 0 .37.03.53.17.14.12.18.28.2.45-.01.06.01.24 0 .38z"/></svg>
+              Telegram @uguro
+            </a>
+            <a href="mailto:enemy1032@gmail.com" class="chat-mail-btn">Email</a>
+          </div>
+          <form class="chat-form" id="chat-form">
+            <input type="text" id="chat-input" name="message" required placeholder="Напишите сообщение…" data-placeholder-ru="Напишите сообщение…" data-placeholder-en="Write a message…" autocomplete="off" />
+            <button type="submit" class="chat-send" aria-label="Send">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">AF</div>
+        <p data-ru="© 2026 Александр Фролов. Все права защищены." data-en="© 2026 Alexander Frolov. All rights reserved.">
+          © 2026 Александр Фролов. Все права защищены.
+        </p>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
